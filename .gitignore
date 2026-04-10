@@ -1,0 +1,30 @@
+# Ignore virtual environment
+robofl_env/
+env/
+venv/
+
+# Ignore Ultralytics package (local clone or installed folder)
+ultralytics/
+
+# Ignore datasets directory
+proj_med_img/datasets/
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.swp
