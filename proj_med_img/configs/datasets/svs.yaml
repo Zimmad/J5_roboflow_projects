@@ -1,0 +1,12 @@
+names:
+- '0'
+nc: 1
+roboflow:
+  license: Private
+  project: susceptibility-vessel-sign-svs
+  url: https://app.roboflow.com/fityanul/susceptibility-vessel-sign-svs/1
+  version: 1
+  workspace: fityanul
+test: ../test/images
+train: ../train/images
+val: ../valid/images

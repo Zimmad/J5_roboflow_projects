@@ -1,0 +1,12 @@
+names:
+- Cervical Syrinx
+nc: 1
+roboflow:
+  license: Private
+  project: cervical-syrinx
+  url: https://app.roboflow.com/fityanul/cervical-syrinx/2
+  version: 2
+  workspace: fityanul
+test: ../test/images
+train: ../train/images
+val: ../valid/images

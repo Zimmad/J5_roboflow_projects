@@ -1,0 +1,17 @@
+# Light augmentations - safe for most medical images
+hsv_h: 0.015      # slight hue
+hsv_s: 0.4        # moderate saturation
+hsv_v: 0.4        # moderate brightness/value
+
+degrees: 5.0      # very small rotation
+translate: 0.1    # small shift
+scale: 0.3        # mild scaling
+shear: 2.0        # minimal shear
+
+flipud: 0.0       # usually disable vertical flip in medical (anatomy direction matters)
+fliplr: 0.5       # horizontal flip often safe
+
+perspective: 0.0
+mosaic: 0.0       # disable for now
+mixup: 0.0
+copy_paste: 0.0
