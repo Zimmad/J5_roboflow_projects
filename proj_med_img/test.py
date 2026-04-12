@@ -38,8 +38,8 @@ if __name__ == "__main__":
         model_name="yolov9c",           # or "yolov9c", "yolo26m", etc.
         aug_dict=example_aug,
         data_yaml="datasets/SVS-1/data.yaml",   # ← change to your YAML
-        aug_name="medical_heavy",       # optional – nice name (or leave None for auto-hash)
-        epochs=50,                      # small number for quick test
-        imgsz=640,
+        aug_name=  "aug_baseline", #"aug_default", #"medical_heavy",       #
+        epochs=300,                      # small number for quick test
+        imgsz=1080,
         batch=16,
     )

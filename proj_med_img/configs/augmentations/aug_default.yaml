@@ -1,16 +1,16 @@
-hsv_h: 0.015
+hsv_h: 0.02
 hsv_s: 0.6
 hsv_v: 0.4
 
 degrees: 8.0
-translate: 0.15
+translate: 0.10
 scale: 0.4
 shear: 5.0
 perspective: 0.0005   # very small
 
-flipud: 0.0
+flipud: 0.4
 fliplr: 0.5
 
-mosaic: 0.8           # enable Mosaic - usually very helpful
+mosaic: 0.4         # enable Mosaic - usually very helpful
 mixup: 0.1
-copy_paste: 0.0
+copy_paste: 0.2

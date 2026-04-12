@@ -38,7 +38,7 @@ def train_yolo(
     data_yaml: str,
     aug_name: Optional[str] = None,
     epochs: int = 100,
-    imgsz: int = 640,
+    imgsz: int = 1080,
     batch: int = 16,
     device: str = "0",
     patience: int = 50,
