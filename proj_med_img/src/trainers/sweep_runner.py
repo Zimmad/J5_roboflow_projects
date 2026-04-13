@@ -25,8 +25,8 @@ def setup_logging_for_run(log_file: Path):
 
 def run_augmentation_sweep():
     # ================== Configuration ==================
-    model_name = "yolov9c"          # Change to "yolo11m", "yolov8s", "yolov26s", etc.
-    data_yaml = "datasets/SVS-1/data.yaml"   # Your dataset YAML
+    model_name = "yolov9c"          # "yolo11m", "yolov8s", "yolov26m", etc.
+    data_yaml = "datasets/SVS-1/data.yaml"   # dataset YAML
     
     aug_files = [
         "01_aug_baseline", "02_aug_baseline", "03_aug_baseline",
@@ -34,16 +34,15 @@ def run_augmentation_sweep():
         "07_aug_baseline", "08_aug_baseline", "09_aug_baseline"
     ]
     
-    # Common training settings (feel free to adjust)
-    common_train_args = {
-        "epochs": 300,           # Good for small dataset + ablation
-        "imgsz": 640,            # Your MRI images are 640x640
-        "batch": 16,             # Adjust based on your GPU VRAM
+    train_args = {
+        "epochs": 200,           
+        "imgsz": 640,            
+        "batch": 4,             
         "patience": 50,
-        "device": "0",           # "0" or "cpu"
+        "device": "0",         
         "lr0": 0.01,
         "lrf": 0.01,
-        "seed": 42,              # Reproducibility
+        "seed": 42,              
     }
     
     print(f"Starting augmentation sweep for model: {model_name}")
@@ -72,8 +71,8 @@ def run_augmentation_sweep():
                 model_name=model_name,
                 aug_dict=aug_dict,
                 data_yaml=data_yaml,
-                aug_name=aug_file,           # Use 01_aug_baseline etc. as folder name
-                **common_train_args
+                aug_name=aug_file,         
+                **train_args
             )
             
             # Cleanup handler
@@ -95,7 +94,7 @@ def run_augmentation_sweep():
                 pass
             continue
     
-    print("\n🎉 Augmentation sweep completed successfully!")
+    print("\n Augmentation sweep completed successfully!")
     print(f"All results organized under: runs/{model_name}/")
     print("You can now compare metrics_summary.csv files across the 9 runs for your paper.")
 

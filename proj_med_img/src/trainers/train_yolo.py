@@ -52,7 +52,7 @@ def train_yolo(
         aug_dict: Dictionary of Ultralytics augmentation parameters
                   (hsv_h, degrees, mosaic, mixup, etc.)
         data_yaml: Path to your dataset YAML file.
-        aug_name: Optional friendly name for the augmentation setting.
+        aug_name: name for the augmentation setting.
                   If None, a hash-based name is generated automatically.
         epochs, imgsz, batch, device, patience: Standard training parameters.
         **kwargs: Any extra Ultralytics train() arguments you want to pass.
@@ -152,7 +152,7 @@ def train_yolo(
     if ultra_plots_src.exists():
         for plot_file in ultra_plots_src.glob("*.png"):
             shutil.copy(plot_file, plots_dir / plot_file.name)
-        print(f"   📸 Saved all plots → {plots_dir} (F1_curve, P_curve, R_curve, PR_curve, etc.)")
+        print(f"   Saved all plots → {plots_dir} (F1_curve, P_curve, R_curve, PR_curve, etc.)")
 
     print(f"   Training finished successfully!\n"
           f"   Model: {model_name}\n"

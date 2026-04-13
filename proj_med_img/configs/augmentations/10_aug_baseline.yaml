@@ -18,8 +18,8 @@
 # COLOR SPACE AUGMENTATIONS
 # (HSV transformations - affect color only, no geometry)
 # ============================================================
-hsv_h: 0.0001   # hue
-hsv_s: 0.002  # saturation
+hsv_h: 0.0   # hue
+hsv_s: 0.0  # saturation
 hsv_v: 0.4   # value/brightness
 
 
@@ -35,7 +35,7 @@ shear: 2.0        # shear angle
 
 
 #Shift & Scale
-translate: 0.1    # translates 20% on x or y axis 0-1 image translation (fraction of image size)
+translate: 0.1    # translates 10% on x or y axis 0-1 image translation (fraction of image size)
 scale: 0.3        #0.5 = 50% 0 -1 random scaling
 
 
@@ -45,7 +45,7 @@ fliplr: 0.5       # horizontal flip probability
 
 # Perspective:  simulates changing the camera's viewpoint, angle, or distance relative to an obje
 # Keep it low to 0.000[1-9] as medical mri scans can be negatively effected by this. 
-perspective: 0.0  # adds 3d realism by changing the view point angel perspective distortion. 
+perspective: 0.0001  # adds 3d realism by changing the view point angel perspective distortion. 
 
 
 # ============================================================
