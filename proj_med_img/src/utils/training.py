@@ -104,7 +104,7 @@ def train_yolo(
     results_csv_src = ultra_run_dir / "results.csv"
     if results_csv_src.exists():
         shutil.copy(results_csv_src, raw_dir / "results.csv")
-        print(f"   📊 Saved epoch-wise metrics → {raw_dir / 'results.csv'}")
+        print(f"Saved epoch-wise metrics → {raw_dir / 'results.csv'}")
 
     # 2. Load best weights and run final validation to extract ALL important metrics
     best_pt = ultra_run_dir / "weights" / "best.pt"
@@ -144,7 +144,7 @@ def train_yolo(
         summary_df = pd.DataFrame(list(metrics_data.items()), columns=["metric", "value"])
         summary_df.to_csv(raw_dir / "metrics_summary.csv", index=False)
 
-        print(f"   📈 Saved final metrics summary → {raw_dir / 'metrics_summary.csv'}")
+        print(f"Saved final metrics summary → {raw_dir / 'metrics_summary.csv'}")
         print(f"      → mAP50-95 = {box.map:.4f} | Precision = {precision:.4f} | Recall = {recall:.4f}")
 
     # --------------------- Save plots ---------------------
@@ -154,7 +154,7 @@ def train_yolo(
             shutil.copy(plot_file, plots_dir / plot_file.name)
         print(f"   📸 Saved all plots → {plots_dir} (F1_curve, P_curve, R_curve, PR_curve, etc.)")
 
-    print(f"✅ Training finished successfully!\n"
+    print(f"   Training finished successfully!\n"
           f"   Model: {model_name}\n"
           f"   Augmentation: {aug_name}\n"
           f"   Raw data: {raw_dir}\n"

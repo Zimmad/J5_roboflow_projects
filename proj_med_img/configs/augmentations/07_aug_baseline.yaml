@@ -1,0 +1,56 @@
+# # Very minimal augmentation - for fair baseline comparison
+# hsv_h: 0.0
+# hsv_s: 0.0
+# hsv_v: 0.0
+# degrees: 0.0
+# translate: 0.0
+# scale: 0.0
+# shear: 0.0
+# perspective: 0.0
+# flipud: 0.0
+# fliplr: 0.0
+# mosaic: 0.0
+# mixup: 0.0
+# copy_paste: 0.0
+
+
+# ============================================================
+# COLOR SPACE AUGMENTATIONS
+# (HSV transformations - affect color only, no geometry)
+# ============================================================
+hsv_h: 0.0   # hue
+hsv_s: 0.0   # saturation
+hsv_v: 0.0   # value/brightness
+
+
+# ============================================================
+# GEOMETRIC AUGMENTATIONS
+# (spatial transformations: rotation, shift, resize, etc.)
+# ============================================================
+
+# Rotation & Shear
+degrees: 0.0      # rotation angle (± degrees)
+shear: 0.0        # shear angle
+
+#Shift & Scale
+translate: 0.0    # image translation (fraction of image size)
+scale: 0.0        # random scaling
+
+# Flips
+flipud: 0.0       # vertical flip probability
+fliplr: 0.0       # horizontal flip probability
+
+# Perspective:  simulates changing the camera's viewpoint, angle, or distance relative to an obje
+# Keep it low to 0.000[1-9] as medical mri scans can be negatively effected by this. 
+perspective: 0.0  # adds 3d realism by changing the view point angel perspective distortion. 
+
+
+# ============================================================
+# 
+# (combine multiple images-- It combines 4 images into single image.)
+# ============================================================
+mosaic: 1.0       # Mosaic (4-image tiling) - this is what gave you 100 % on Roboflow
+
+# Close Mosaic-- It is used to stop the mossaic for the last n number of epochs during finetuning YoLo Ultralytics model 
+
+close_mosaic: 30
