@@ -11,7 +11,7 @@ Main training functions for Ultralytics YOLO (v9 / v11 / v26) models.
     ├── raw/<aug_name>/
     │   ├── results.csv              ← full epoch-by-epoch metrics (load with pandas)
     │   └── metrics_summary.csv      ← clean final metrics table
-    └── plots/augmentations/<aug_name>/
+    └── plots/<aug_name>/
             └── *.png                ← all Ultralytics plots (F1_curve, P_curve, R_curve,
                                        PR_curve, confusion_matrix, etc.)
 """

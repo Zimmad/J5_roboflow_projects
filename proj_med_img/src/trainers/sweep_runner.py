@@ -9,7 +9,7 @@ from pathlib import Path
 import logging
 from ultralytics.utils import LOGGER
 from src.utils.load_augmentations import load_augmentations
-from src.trainers.train_yolo import train_yolo   # your existing file
+from src.trainers.train_yolo import train_yolo   
 
 def setup_logging_for_run(log_file: Path):
     """Add file handler to capture full training console output."""
