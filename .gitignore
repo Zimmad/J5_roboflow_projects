@@ -9,6 +9,12 @@ ultralytics/
 # Ignore datasets directory
 proj_med_img/datasets/
 
+proj_med_img/*.pt
+
+
+
+proj_med_img/runs/
+
 # Python cache files
 __pycache__/
 *.pyc
@@ -28,3 +34,5 @@ Thumbs.db
 # Temporary files
 *.tmp
 *.swp
+
+proj_med_img.zip

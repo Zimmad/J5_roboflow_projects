@@ -38,7 +38,7 @@ def train_yolo(
     data_yaml: str,
     aug_name: Optional[str] = None,
     epochs: int = 100,
-    imgsz: int = 1080,
+    imgsz: int = 640,
     batch: int = 16,
     device: str = "0",
     patience: int = 50,
@@ -62,7 +62,12 @@ def train_yolo(
         aug_name = _generate_aug_name(aug_dict)
 
     # --------------------- Directory setup (exactly as you requested) ---------------------
-    base_dir = Path("runs") / model_name
+    project_root = Path(__file__).resolve().parents[2]
+    
+    base_dir = project_root / "runs" / model_name
+
+    
+    # base_dir = Path("runs") / model_name
     raw_dir = base_dir / "raw" / aug_name
     plots_dir = base_dir / "plots" / aug_name
 

@@ -8,6 +8,10 @@ Organizes outputs for easy comparison and paper writing.
 from pathlib import Path
 import logging
 from ultralytics.utils import LOGGER
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
+
 from src.utils.load_augmentations import load_augmentations
 from src.trainers.train_yolo import train_yolo   
 
@@ -28,6 +32,7 @@ def run_augmentation_sweep():
     model_name = "yolov9c"          # "yolo11m", "yolov8s", "yolov26m", etc.
     data_yaml = "datasets/SVS-1/data.yaml"   # dataset YAML
     
+    model_names = [   "yolo11x" , "yolov9e", "yolo26x"  ] 
     aug_files = [
         "01_aug_baseline", "02_aug_baseline", "03_aug_baseline",
         "04_aug_baseline", "05_aug_baseline", "06_aug_baseline",
@@ -35,64 +40,68 @@ def run_augmentation_sweep():
     ]
     
     train_args = {
-        "epochs": 200,           
+        "epochs": 1,           
         "imgsz": 640,            
         "batch": 4,             
         "patience": 50,
         "device": "0",         
-        "lr0": 0.01,
+        "lr0": 0.001,
         "lrf": 0.01,
         "seed": 42,              
     }
     
-    print(f"Starting augmentation sweep for model: {model_name}")
-    print(f"Dataset: {data_yaml}")
-    print(f"Total runs: {len(aug_files)}\n")
     
-    for aug_file in aug_files:
-        try:
-            # Load augmentation dict from your YAML files
-            aug_dict = load_augmentations(aug_file)
-            print(f"\n{'='*80}")
-            print(f"Running: {aug_file}")
-            print(f"Augmentations: {aug_dict}")
-            print(f"{'='*80}")
-            
-            # Setup extra logging for this run (for paper)
-            base_dir = Path("runs") / model_name
-            log_dir = base_dir / "logs" / aug_file
-            training_log = log_dir / "training.log"
-            
-            # Add file logger
-            handler = setup_logging_for_run(training_log)
-            
-            # Train the model
-            train_yolo(
-                model_name=model_name,
-                aug_dict=aug_dict,
-                data_yaml=data_yaml,
-                aug_name=aug_file,         
-                **train_args
-            )
-            
-            # Cleanup handler
-            LOGGER.removeHandler(handler)
-            handler.close()
-            
-            print(f" Completed: {aug_file}")
-            print(f"    Raw metrics + log: runs/{model_name}/raw/{aug_file}/")
-            print(f"    Plots: runs/{model_name}/plots/{aug_file}/")
-            print(f"    Full training log: runs/{model_name}/logs/{aug_file}/training.log\n")
-            
-        except Exception as e:
-            print(f"Failed on {aug_file}: {e}")
-            # Try to remove handler if it was added
+    for m_name in model_names: 
+        model_name = m_name
+        
+        print(f"Starting augmentation sweep for model: {model_name}")
+        print(f"Dataset: {data_yaml}")
+        print(f"Total runs: {len(aug_files)}\n")
+        
+        for aug_file in aug_files:
             try:
+                # Load augmentation dict from your YAML files
+                aug_dict = load_augmentations(aug_file)
+                print(f"\n{'='*80}")
+                print(f"Running: {aug_file}")
+                print(f"Augmentations: {aug_dict}")
+                print(f"{'='*80}")
+                
+                # Setup extra logging for this run (for paper)
+                base_dir = Path("runs") / model_name
+                log_dir = base_dir / "logs" / aug_file
+                training_log = log_dir / "training.log"
+                
+                # Add file logger
+                handler = setup_logging_for_run(training_log)
+                
+                # Train the model
+                train_yolo(
+                    model_name=model_name,
+                    aug_dict=aug_dict,
+                    data_yaml=data_yaml,
+                    aug_name=aug_file,         
+                    **train_args
+                )
+                
+                # Cleanup handler
                 LOGGER.removeHandler(handler)
                 handler.close()
-            except:
-                pass
-            continue
+                
+                print(f" Completed: {aug_file}")
+                print(f"    Raw metrics + log: runs/{model_name}/raw/{aug_file}/")
+                print(f"    Plots: runs/{model_name}/plots/{aug_file}/")
+                print(f"    Full training log: runs/{model_name}/logs/{aug_file}/training.log\n")
+                
+            except Exception as e:
+                print(f"Failed on {aug_file}: {e}")
+                # Try to remove handler if it was added
+                try:
+                    LOGGER.removeHandler(handler)
+                    handler.close()
+                except:
+                    pass
+                continue
     
     print("\n Augmentation sweep completed successfully!")
     print(f"All results organized under: runs/{model_name}/")
