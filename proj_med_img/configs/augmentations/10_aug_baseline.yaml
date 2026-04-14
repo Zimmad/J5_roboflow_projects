@@ -56,4 +56,4 @@ mosaic: 1.0       # Mosaic (4-image tiling) - this is what gave you 100 % on Rob
 
 # Close Mosaic-- It is used to stop the mossaic for the last n number of epochs during finetuning YoLo Ultralytics model 
 
-close_mosaic: 20
+close_mosaic: 30
