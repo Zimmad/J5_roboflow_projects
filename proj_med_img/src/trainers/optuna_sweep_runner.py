@@ -109,7 +109,7 @@ def run_augmentation_sweep():
         "seed": 42,
     }
 
-    n_trials = 30   # Number of trials : 30-50
+    n_trials = 50   # Number of trials
 
     for model_name in model_names:
         print(f"\n{'='*90}")
