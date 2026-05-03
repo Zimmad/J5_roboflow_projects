@@ -37,3 +37,30 @@ Thumbs.db
 
 proj_med_img.zip
 *.zip
+
+
+# Python
+__pycache__/
+*.py[cod]
+*.class
+venv/
+.env
+
+# MLflow and Artifacts
+mlruns/
+mlartifacts/
+outputs/
+
+# Large Binary Files (Requested)
+*.pkl
+*.pth
+*.h5
+*.onnx
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+
+# OS Files
+.DS_Store
+Thumbs.db
+proj_med_img (2)/
