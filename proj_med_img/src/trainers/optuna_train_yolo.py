@@ -82,7 +82,20 @@ def train_yolo(
     # ======= Tracking the experiments with MLflow
     mlflow.set_experiment(experiment_name)
 
-    with mlflow.start_run(run_name=f"{model_name}_{aug_name}"):
+    # with mlflow.start_run(run_name=f"{model_name}_{aug_name}"):
+    #     mlflow.log_params({
+    #         "model": model_name,
+    #         "epochs": epochs,
+    #         "imgsz": imgsz,
+    #         "batch": batch,
+    #         **aug_dict
+    #     })
+    
+    run = None
+    try:
+        mlflow.set_experiment(experiment_name)
+        run = mlflow.start_run(run_name=f"{model_name}_{aug_name}")
+        
         mlflow.log_params({
             "model": model_name,
             "epochs": epochs,
@@ -126,9 +139,16 @@ def train_yolo(
 
         model.train(**train_args)
 
-
-        # weights_dir = ultra_run_dir / "weights"
-        # last_pt = weights_dir / "last.pt"
+        
+        ultra_run_dir = base_dir / aug_name
+        weights_dir = ultra_run_dir / "weights"
+        last_pt = weights_dir / "last.pt"
+        
+        if last_pt.exists():
+            try:
+                last_pt.unlink()
+            except PermissionError:
+                print("Warning: last.pt is locked, skipping deletion")
 
         # if last_pt.exists():
         #     last_pt.unlink()  # delete last.pt
@@ -186,3 +206,10 @@ def train_yolo(
             mlflow.log_artifacts(str(plots_dir), artifact_path="plots")
 
         return metrics_summary
+    
+    except Exception as e:
+        print(f"Error during training {aug_name}: {e}")
+        raise
+    finally:
+        if run is not None:
+            mlflow.end_run()

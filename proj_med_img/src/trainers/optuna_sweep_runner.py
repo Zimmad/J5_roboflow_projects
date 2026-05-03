@@ -99,7 +99,7 @@ def run_augmentation_sweep():
     model_names = ["yolov9e", "yolo11x", "yolo26x"]
     
     train_args = {
-        "epochs": 250,
+        "epochs": 2,
         "imgsz": 640,
         "batch": 4,
         "patience": 50,
@@ -109,7 +109,7 @@ def run_augmentation_sweep():
         "seed": 42,
     }
 
-    n_trials = 30   # Change as needed (30-50 is reasonable)
+    n_trials = 30   # Number of trials : 30-50
 
     for model_name in model_names:
         print(f"\n{'='*90}")
