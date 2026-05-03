@@ -32,7 +32,7 @@ def run_augmentation_sweep():
     model_name = "yolov9c"          # "yolo11m", "yolov8s", "yolov26m", etc.
     data_yaml = "datasets/SVS-1/data.yaml"   # dataset YAML
     
-    model_names = [   "yolo11x" , "yolov9e", "yolo26x"  ] 
+    model_names = [   "yolov9e",  "yolo11x" ,"yolo26x"  ] 
     aug_files = [
         "01_aug_baseline", "02_aug_baseline", "03_aug_baseline",
         "04_aug_baseline", "05_aug_baseline", "06_aug_baseline",
@@ -40,7 +40,7 @@ def run_augmentation_sweep():
     ]
     
     train_args = {
-        "epochs": 1,           
+        "epochs": 300,           
         "imgsz": 640,            
         "batch": 4,             
         "patience": 50,
